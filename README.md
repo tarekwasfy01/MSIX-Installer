@@ -169,29 +169,6 @@ MSIXInstaller.exe
 
 Certificate files, passwords, temporary signed packages, and other sensitive build resources should not be committed to the public repository.
 
-## Recommended `.gitignore`
-
-```gitignore
-.vs/
-x64/
-Debug/
-Release/
-build/
-output/
-temp/
-*.pfx
-*.cer
-*.pvk
-*.key
-*.msix
-*.appx
-*.msixbundle
-*.appxbundle
-*.log
-```
-
-Remove the MSIX entries from `.gitignore` when you intentionally want to publish test packages in the repository.
-
 ## Disclaimer
 
 This project is provided without warranty.

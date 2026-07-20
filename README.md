@@ -1,86 +1,202 @@
-# MSIX Installer — native C++ one-file build
+# MSIX Installer
 
-This project creates a compact native Windows application with:
+A lightweight native Windows application for signing and installing `.msix` packages through a simple drag-and-drop interface.
 
-- one large MSIX drag-and-drop area
-- a **Choose MSIX** button inside the drop area
-- one blue **Install** button
-- a blue application background and blue frame
-- an entirely English interface
-- no visible Publisher or PFX password fields
-- embedded Publisher and PFX password settings
-- embedded PowerShell signing workflow
-- embedded `signtool.exe`
-- statically linked MSVC runtime
-- no companion files beside the final EXE
+The application is designed for distributing MSIX packages outside the Microsoft Store, such as internal builds, test versions, GitHub releases, and direct-download applications.
 
-## Build the standalone EXE
+## Download:
 
-Run:
+https://github.com/tarekwasfy01/MSIX-Installer/releases/download/MSIXInstaller/MSIXInstaller.exe
 
-`BUILD_ONEFILE_EXE.bat`
+<img width="1601" height="983" alt="ChatGPT Image 20  Juli 2026, 13_45_37" src="https://github.com/user-attachments/assets/3aa65294-80a3-48b0-864a-8b5cd040cabc" />
 
-The final distributable is:
 
-`output\MSIXInstaller.exe`
 
-Only that EXE needs to be distributed. At runtime it temporarily extracts the
-embedded signing script and SignTool, runs the signing workflow, and removes
-the temporary copies again.
+## Features
 
-## Install all required build tools automatically
+* Drag and drop an `.msix` package into the application
+* Select an MSIX package using the centered **Choose File** button
+* Sign unsigned MSIX packages automatically
+* Install the signing certificate when required
+* Install the signed MSIX package
+* Dark native Windows interface
+* Clear installation status and error messages
+* No PowerShell window displayed during normal use
+* Distributed as a single executable
+* No separate installer required
 
-Run:
+## Usage
 
-`INSTALL_EVERYTHING_AND_BUILD.bat`
+1. Download `MSIXInstaller.exe` from the GitHub Releases page.
+2. Start the application.
+3. Drag an `.msix` file into the large drop area.
 
-This opens the Visual Studio Installer with UAC, installs the native C++ build
-tools and Windows SDK, and then builds the one-file EXE.
+Alternatively, click **Choose File** and select the MSIX package manually.
 
-## Hidden settings
+4. Click **Install**.
+5. Accept the Windows administrator prompt when it appears.
+6. Wait until the signing and installation process is complete.
 
-The following values are compiled into `src\main.cpp`:
+## How It Works
 
-- Publisher: `CN=85434AF5-74BD-4E8F-90F0-13F9EA1270DE`
-- PFX password: `SupremeMapsDownloader2026!`
+The application performs the following operations:
 
-They are hidden from the interface but are not cryptographically secret.
-Anyone who reverse-engineers the executable may still recover embedded values.
+1. Validates the selected MSIX package.
+2. Locates the required Windows SDK signing tools.
+3. Creates or loads the configured signing certificate.
+4. Signs the selected package.
+5. Adds the certificate to the required Windows certificate store.
+6. Installs the signed MSIX package.
 
-## Certificate trust
+The configured publisher information and certificate password are not displayed in the user interface.
 
-Signing runs without starting the application as administrator. A self-signed
-MSIX certificate must still be trusted by the computer once. When required,
-the application opens the standard Windows certificate wizard.
+## Requirements
 
-Choose:
+* Windows 10 or Windows 11
+* 64-bit Windows
+* Administrator permissions
+* Windows App Installer
+* Windows SDK Signing Tools, when they are not bundled with the application
+* A valid MSIX package
 
-1. Install Certificate
-2. Local Machine
-3. Place all certificates in the following store
-4. Trusted People
-5. Finish
+The package identity publisher must match the certificate subject used for signing.
 
-Then click **Install** again.
+Example:
 
-## Store package
-
-Run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\BUILD_STORE_MSIX.ps1 `
-  -PackageName "TarekWasfy.MSIXInstaller" `
-  -Publisher "CN=85434AF5-74BD-4E8F-90F0-13F9EA1270DE" `
-  -Version "1.0.0.0"
+```xml
+<Identity
+    Name="ExampleCompany.ExampleApp"
+    Publisher="CN=YOUR-PUBLISHER-ID"
+    Version="1.0.0.0"
+    ProcessorArchitecture="x64" />
 ```
 
-The Store manifest contains `runFullTrust`, but does not contain
-`allowElevation` or `packageManagement`.
+## Supported Files
 
+The application currently supports:
 
-## V2 fixes
+```text
+.msix
+```
 
-- Before installing, the app now removes an already installed package with the same package identity for the current user.
-- The UI is now dark.
-- Only the **Install** button is blue.
-- The **Choose MSIX** button and the drop area use dark gray styling.
+Support for `.msixbundle`, `.appx`, and `.appxbundle` may be added in a future release.
+
+## Common Errors
+
+### The MSIX package cannot be signed
+
+The selected file may be damaged, incomplete, or not be a valid MSIX package.
+
+Verify the package with:
+
+```powershell
+MakeAppx.exe unpack /p "Application.msix" /d "UnpackedPackage"
+```
+
+### SignTool was not found
+
+Install the Windows SDK and enable the following component:
+
+```text
+Windows SDK Signing Tools for Desktop Apps
+```
+
+### Publisher does not match
+
+The `Publisher` value in `AppxManifest.xml` must exactly match the subject of the signing certificate.
+
+### Certificate is not trusted
+
+The certificate must be installed in the appropriate certificate store before Windows can install the signed package.
+
+### The package is already installed
+
+Remove the existing version or increase the package version in `AppxManifest.xml`.
+
+Example:
+
+```xml
+Version="1.0.1.0"
+```
+
+### A newer version is already installed
+
+Windows normally prevents installation of a package with a lower version number. Build the package with a version higher than the installed version.
+
+## Security Notice
+
+Installing MSIX packages from outside the Microsoft Store requires trust in the package publisher.
+
+Only install packages obtained from a source you trust.
+
+The application may install a signing certificate on the local computer. Review the certificate and package source before continuing.
+
+Do not distribute private production certificates or expose certificate passwords in a public repository.
+
+## Building
+
+Open the project in a supported Visual Studio installation and compile it for Windows x64.
+
+For a native MSVC build, initialize the Visual Studio developer environment:
+
+```bat
+call "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat"
+```
+
+Then run the included build script:
+
+```bat
+BUILD.bat
+```
+
+The generated executable will be placed in the configured output directory.
+
+Example:
+
+```text
+output\MSIXInstaller.exe
+```
+
+## One-File Distribution
+
+The release build is designed to produce a single executable containing the required application resources.
+
+Users only need:
+
+```text
+MSIXInstaller.exe
+```
+
+Certificate files, passwords, temporary signed packages, and other sensitive build resources should not be committed to the public repository.
+
+## Recommended `.gitignore`
+
+```gitignore
+.vs/
+x64/
+Debug/
+Release/
+build/
+output/
+temp/
+*.pfx
+*.cer
+*.pvk
+*.key
+*.msix
+*.appx
+*.msixbundle
+*.appxbundle
+*.log
+```
+
+Remove the MSIX entries from `.gitignore` when you intentionally want to publish test packages in the repository.
+
+## Disclaimer
+
+This project is provided without warranty.
+
+The developer is not responsible for damaged packages, installation failures, certificate problems, data loss, or packages installed from untrusted sources.
+
+Always keep backups of the original MSIX package.
+

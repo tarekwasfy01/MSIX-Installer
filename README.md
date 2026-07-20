@@ -24,13 +24,6 @@ https://github.com/tarekwasfy01/MSIX-Installer/releases/download/MSIXInstaller/M
 * Distributed as a single executable
 * No separate installer required
 
-## Screenshot
-
-Add a screenshot to your repository and use:
-
-```markdown
-![MSIX Installer](screenshot.png)
-```
 
 ## Usage
 

@@ -8,6 +8,9 @@ The application is designed for distributing MSIX packages outside the Microsoft
 
 https://github.com/tarekwasfy01/MSIX-Installer/releases/download/MSIXInstaller/MSIXInstaller.exe
 
+<img width="1601" height="983" alt="ChatGPT Image 20  Juli 2026, 13_45_37" src="https://github.com/user-attachments/assets/bf2104a6-12f4-41e1-952f-ede614f53a9f" />
+
+
 ## Features
 
 * Drag and drop an `.msix` package into the application

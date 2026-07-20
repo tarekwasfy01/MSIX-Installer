@@ -4,6 +4,10 @@ A lightweight native Windows application for signing and installing `.msix` pack
 
 The application is designed for distributing MSIX packages outside the Microsoft Store, such as internal builds, test versions, GitHub releases, and direct-download applications.
 
+## Download:
+
+https://github.com/tarekwasfy01/MSIX-Installer/releases/download/MSIXInstaller/MSIXInstaller.exe
+
 ## Features
 
 * Drag and drop an `.msix` package into the application

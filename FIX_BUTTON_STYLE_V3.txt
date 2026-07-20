@@ -1,0 +1,5 @@
+Updated button style:
+- Install button is square.
+- Center button is dark and labeled 'Choose File'.
+- Center button remains centered.
+- One-file EXE build remains unchanged.

@@ -1,0 +1,7 @@
+#include <windows.h>
+
+1 ICON "assets\\App.ico"
+1 RT_MANIFEST "src\\app.manifest"
+
+101 RCDATA "scripts\\SignInstall.ps1"
+102 RCDATA "tools\\signtool\\signtool.exe"

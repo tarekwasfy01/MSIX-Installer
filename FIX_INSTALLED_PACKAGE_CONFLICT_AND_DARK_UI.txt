@@ -1,0 +1,14 @@
+Fixed in this version:
+
+1. Package conflict during Add-AppxPackage
+   - The installer now reads AppxManifest.xml from the selected MSIX.
+   - It extracts the package identity name.
+   - It removes any already installed package with the same identity for the current user.
+   - It then installs the newly signed package.
+
+2. UI theme
+   - Dark application background
+   - Dark drop zone
+   - Dark title bar / frame
+   - Only the Install button remains blue
+   - Choose MSIX button changed to dark gray

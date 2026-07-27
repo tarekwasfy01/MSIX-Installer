@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setup Studio — Build native Windows setup packages</title>
+  <meta name="description" content="Setup Studio is a native Windows application for creating configurable setup packages with a clear, script-based workflow.">
+  <meta name="theme-color" content="#071b45">
+  <meta property="og:title" content="Setup Studio">
+  <meta property="og:description" content="Build native Windows setup packages with a simple script-based workflow.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/setup-studio-hero.png">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Setup Studio home">
+      <img src="assets/setup-studio-icon.png" alt="" width="42" height="42">
+      <span>Setup Studio</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#project-file">Project file</a>
+      <a href="impressum.html">Imprint</a>
+    </nav>
+
+    <a class="header-cta" href="#download">Get the app</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+
+      <div class="hero-copy">
+        <div class="eyebrow">Native Windows installer creation</div>
+        <h1>Build setup packages without a complicated toolchain.</h1>
+        <p>
+          Setup Studio combines a focused Windows interface with a readable
+          <code>.csetup</code> project format. Configure your application,
+          installation paths, shortcuts, architecture targets and output file
+          in one place.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#download">Download from Microsoft Store</a>
+          <a class="button button-secondary" href="#project-file">View project example</a>
+        </div>
+
+        <div class="hero-points" aria-label="Key benefits">
+          <span>Script-based</span>
+          <span>Fast configuration</span>
+          <span>Native Windows workflow</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <img
+          src="assets/setup-studio-hero.png"
+          alt="Setup Studio interface showing a setup project script and build output"
+          width="1648"
+          height="928">
+      </div>
+    </section>
+
+    <section class="section intro" id="features">
+      <div class="section-heading">
+        <div class="eyebrow">Everything in one project</div>
+        <h2>A practical workflow for Windows application packaging</h2>
+        <p>
+          Define the important installer settings in a compact project file,
+          open it in Setup Studio and build the setup package from the same interface.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-number">01</div>
+          <h3>Readable project files</h3>
+          <p>
+            Store the configuration in a plain-text <code>.csetup</code> file
+            that is easy to review, edit and keep together with your project.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-number">02</div>
+          <h3>Application metadata</h3>
+          <p>
+            Configure the application name, version, identifier, publisher,
+            description, website and support address.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-number">03</div>
+          <h3>Installation layout</h3>
+          <p>
+            Choose the source directory, main executable, default installation
+            directory, installation folder and output path.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-number">04</div>
+          <h3>Shortcut options</h3>
+          <p>
+            Control desktop shortcuts, uninstall support and whether users may
+            change the target directory or selected components.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-number">05</div>
+          <h3>Architecture targets</h3>
+          <p>
+            Declare target architectures such as x64, ARM64 and x86 directly
+            in the project configuration.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-number">06</div>
+          <h3>Integrated build output</h3>
+          <p>
+            Start the build from Setup Studio and follow status messages in the
+            dedicated output panel.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section workflow-section" id="workflow">
+      <div class="workflow-copy">
+        <div class="eyebrow">Simple. Fast. Native.</div>
+        <h2>From application folder to setup package</h2>
+        <p>
+          Setup Studio keeps the process transparent. Your payload remains in a
+          normal folder and the project file describes how the installer should
+          be built.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <span>1</span>
+          <div>
+            <h3>Prepare the payload</h3>
+            <p>Place the application executable and all required files in the source directory.</p>
+          </div>
+        </li>
+        <li>
+          <span>2</span>
+          <div>
+            <h3>Configure the project</h3>
+            <p>Set metadata, paths, architecture targets, shortcuts and installer behavior.</p>
+          </div>
+        </li>
+        <li>
+          <span>3</span>
+          <div>
+            <h3>Build and review</h3>
+            <p>Run the build, inspect the output and distribute the generated setup package.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section project-section" id="project-file">
+      <div class="project-copy">
+        <div class="eyebrow">Clear configuration</div>
+        <h2>A project format you can understand at a glance</h2>
+        <p>
+          Paths are relative to the project file, which makes the project folder
+          easy to move, archive or maintain in version control.
+        </p>
+
+        <div class="config-tags">
+          <span>App metadata</span>
+          <span>Source directory</span>
+          <span>Main executable</span>
+          <span>Install path</span>
+          <span>Architectures</span>
+          <span>Compression</span>
+          <span>Shortcuts</span>
+          <span>Uninstaller</span>
+        </div>
+      </div>
+
+      <div class="code-window" aria-label="Example Setup Studio project file">
+        <div class="code-titlebar">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>MyApplication.csetup</span>
+        </div>
+<pre><code>; Setup Studio project
+; Paths are relative to this .csetup file.
+
+[Setup]
+AppName=My Application
+AppVersion=1.0.0
+AppId=MyCompany.MyApplication
+Publisher=My Company
+Description=A native Windows application
+Website=https://example.com
+SupportUrl=https://example.com/support
+SourceDir=payload
+MainExe=MyApplication.exe
+Output=dist\MyApplication-Setup.exe
+InstallScope=user
+DefaultDir={localappdata}\Programs\My Application
+InstallFolder=My Application
+Architectures=x64,arm64,x86
+MinWindowsBuild=19041
+Compression=lzms
+AllowDirectoryChange=true
+AllowComponentChange=true
+CreateUninstaller=true
+DesktopShortcut=true</code></pre>
+      </div>
+    </section>
+
+    <section class="section download-section" id="download">
+      <div>
+        <div class="eyebrow">Available for Windows</div>
+        <h2>Get Setup Studio from Microsoft Store</h2>
+        <p>
+          Install the current Store version and start creating your first
+          <code>.csetup</code> project.
+        </p>
+      </div>
+
+      <div class="store-badge-wrap">
+        <ms-store-badge
+          productid="9n8s4rklz6dq"
+          window-mode="full"
+          theme="auto"
+          size="large"
+          language="de-de"
+          animation="on">
+        </ms-store-badge>
+        <noscript>
+          <a class="button button-primary" href="https://apps.microsoft.com/detail/9n8s4rklz6dq">
+            Open in Microsoft Store
+          </a>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <img src="assets/setup-studio-icon.png" alt="" width="96" height="96">
+      <div>
+        <h2>Create the installer project. Build the package. Ship your app.</h2>
+        <p>Setup Studio gives Windows developers a focused installer-building workflow.</p>
+      </div>
+      <a class="button button-primary" href="#download">Get Setup Studio</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Setup Studio</strong>
+      <span>Build native Windows setup packages.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#download">Microsoft Store</a>
+      <a href="impressum.html">Imprint &amp; Privacy</a>
+    </div>
+    <div class="copyright">© <span id="year">2026</span> Tarek Wasfy</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
